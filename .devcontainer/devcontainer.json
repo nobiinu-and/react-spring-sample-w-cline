@@ -1,0 +1,56 @@
+{
+  "name": "react-spring-postgres-dev",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/react-spring-sample",
+  "runServices": ["app", "db"],
+  "shutdownAction": "stopCompose",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": false
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    },
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installMaven": true,
+      "installGradle": true
+    },
+    "ghcr.io/devcontainers/features/git-lfs:1": {}
+  },
+  "forwardPorts": [3000, 5173, 8080, 5432],
+  "portsAttributes": {
+    "3000": {
+      "label": "FrontEnd",
+      "onAutoForward": "notify",
+      "visibility": "organization"
+    },
+    "8080": {
+      "label": "BackEnd",
+      "onAutoForward": "notify",
+      "visibility": "organization"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "extensions.autoCheckUpdates": false,
+        "extensions.autoUpdate": false
+      },
+      "extensions": [
+        "github.copilot-chat",
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-spring-boot",
+        "ms-azuretools.vscode-docker",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
+      ]
+    }
+  },
+  "postCreateCommand": "corepack enable && corepack prepare pnpm@11.2.2 --activate && node -v && pnpm -v && java -version && mvn -v",
+  "remoteUser": "vscode"
+}
