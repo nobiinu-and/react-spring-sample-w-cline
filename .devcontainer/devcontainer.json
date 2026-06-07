@@ -53,6 +53,6 @@
       ]
     }
   },
-  "postCreateCommand": "corepack enable && corepack prepare pnpm@11.2.2 --activate && node -v && pnpm -v && java -version && mvn -v",
+  "postCreateCommand": "bash .devcontainer/setup-aws.sh && corepack enable && corepack prepare pnpm@11.2.2 --activate && node -v && pnpm -v && java -version && mvn -v",
   "remoteUser": "vscode"
 }
